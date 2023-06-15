@@ -154,11 +154,14 @@ class BattleShipGame:
             result (str): The result of the game ('Player' or 'Computer').
         """
         if result == 'Player':
-            print("\nCongratulations! You win!")
+            print("\n")
+            print(colored("******Congratulations! You win!******", "red", "on_yellow"))
         elif result == 'Computer':
-            print("\nGame Over. Computer wins!")
+            print("\n")
+            print(colored("******Game Over. Computer wins!******", "red", "on_white"))
         else:
-            print("\nA draw play")
+            print("\n")
+            print(colored("*************A draw play*************", "red", "on_white"))
 
     def is_game_over(self):
         """
@@ -232,16 +235,17 @@ class BattleShipGame:
                         break
 
                     row, col = player_guess
+                    print("\n")
                     if self.Hidden_Pattern_Computer[row][col] == '$':
-                        print(colored("\nCongratulations! You hit a battleship!", "blue", "on_white"))
+                        print(colored("Congratulations! You hit a battleship!", "blue", "on_white"))
                         self.Guess_Pattern_Player[row][col] = '#'
                         self.player_score += 1
                     else:
-                        print(colored("\nyou missed.", "blue", "on_white"))
+                        print(colored("--------------you missed.-------------", "blue", "on_white"))
                         self.Guess_Pattern_Player[row][col] = 'x'
 
-                    print(colored("\nYou Guessed row: {} column: {}".format(row, col), "blue", "on_white"))
-                    
+                    print(colored("-----You Guessed row: {} column: {}-----".format(row, col), "blue", "on_white"))
+                    print("\n")
                     
                     self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
                     valid_player_input = True
@@ -252,18 +256,19 @@ class BattleShipGame:
                         break
 
                     row, col = computer_guess
+                    print("\n")
                     if self.Hidden_Pattern_Player[row][col] == '$':
-                        print(colored("\nThe computer hit one of your battleships!", "red", "on_white"))
+                        print(colored("The computer hit one of your battleships!", "red", "on_white"))
                         self.Hidden_Pattern_Player[row][col] = '#'
                         self.Guess_Pattern_Computer[row][col] = '#'
                         self.computer_score += 1
                     else:
-                        print(colored("\nThe computer missed your battleship.", "red", "on_white"))
+                        print(colored("---The computer missed your battleship.--", "red", "on_white"))
                         self.Hidden_Pattern_Player[row][col] = 'O'
                         self.Guess_Pattern_Computer[row][col] = 'O'
                     
-                    print(colored("\nComputer Guessed row: {} column: {}".format(row, col), "red", "on_white"))
-                    
+                    print(colored("----Computer Guessed row: {} column: {}----".format(row, col), "red", "on_white"))
+                    print("\n")
                     self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_green')
                     self.print_score()
                     valid_computer_input = True
@@ -283,7 +288,8 @@ class BattleShipGame:
         Displays the game home page and allows the user to choose to play or quit.
         """
         while True:
-            print(colored("\nBattleship Game     ", "black", "on_yellow"))
+            print("\n")
+            print(colored("Battleship Game     ", "black", "on_yellow"))
             print(colored("Enter 1 to Play Game", "black", "on_yellow"))
             print(colored("Enter 2 to Quit     ", "black", "on_yellow"))
             
