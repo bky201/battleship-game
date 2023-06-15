@@ -47,15 +47,15 @@ class BattleShipGame:
 
         ship_locations = set()
         for i in range(num_ships):
-            whi;e True:
-            #Generate random ship location
-            ship_r, ship_c = randint(0, self.board_size - 1), randint(0, self.board_size - 1)
-            ship_location = (ship_r, ship_c)
-            if ship_location not in ship_locations:
-                ship_locations.add(ship_location)
-                #Place ship on the board
-                board[ship_r][ship_c] = "$"
-                break
+            while True:
+                #Generate random ship location
+                ship_r, ship_c = randint(0, self.board_size - 1), randint(0, self.board_size - 1)
+                ship_location = (ship_r, ship_c)
+                if ship_location not in ship_locations:
+                    ship_locations.add(ship_location)
+                    #Place ship on the board
+                    board[ship_r][ship_c] = "$"
+                    break
 
     def count_hits():
         pass
@@ -86,9 +86,8 @@ class BattleShipGame:
         self.Guess_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
         self.Guess_Pattern_Computer = [['-']*self.board_size for _ in range(self.board_size)]
 
-
-
-        
+        self.create_ships(self.Hidden_Pattern_Player)
+        self.create_ships(self.Hidden_Pattern_Computer)
 
         print("\nPlaye Board:")
         self.print_game_board(self.Guess_Pattern_Player)
