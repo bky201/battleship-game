@@ -26,8 +26,7 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            print(Back.MAGENTA, Style.BRIGHT)
-            size = input("\nEnter the board size (minimum 4): ")
+            size = input(Back.MAGENTA + Style.BRIGHT + "\nEnter the board size (minimum 4) and press Enter: ")
             print(Style.RESET_ALL)
             
             if size.isdigit():
