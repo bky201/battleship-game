@@ -138,8 +138,17 @@ class BattleShipGame:
                     count += 1
         return count
 
-    def game_over_message():
-        pass
+    def game_over_message(self, result):
+        """
+        Prints the game over message based on the result.
+
+        Args:
+            result (str): The result of the game ('Player' or 'Computer').
+        """
+        if result == 'Player':
+            print("\nCongratulations! You win!")
+        elif result == 'Computer':
+            print("\nGame Over. Computer wins!")
 
     def is_game_over():
         pass
