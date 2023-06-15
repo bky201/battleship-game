@@ -160,8 +160,28 @@ class BattleShipGame:
         num_ships = self.board_size
         return self.player_score >= num_ships or self.computer_score >= num_ships
 
-    def computer_guess():
-        pass
+    def computer_guess(self):
+        """
+        Generates a computer guess for the ship location.
+
+        Returns:
+            tuple: The row and column indices of the computer's guess.
+                   Returns None if all possible guesses have been made.
+        """
+        num_rows = len(self.Hidden_Pattern_Player)
+        num_cols = len(self.Hidden_Pattern_Player[0])
+        max_guesses = num_rows * num_cols
+
+        if len(self.computer_guessed_locations) == max_guesses:
+            return None
+
+        while True:
+            row = randint(0, num_rows - 1)
+            col = randint(0, num_cols - 1)
+            guess = (row, col)
+            if guess not in self.computer_guessed_locations:
+                self.computer_guessed_locations.append(guess)
+                return guess
 
     def play(self):
         """
