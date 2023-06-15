@@ -37,9 +37,6 @@ class BattleShipGame:
             print(colored("\nInvalid board size. Please enter a number greater than or equal to 5.", "red", 'on_white'))
 
 
-    def ship_numbers():
-        pass
-
     def print_game_board(self, board, color, background):
         """
         Prints the game board.
@@ -125,8 +122,9 @@ class BattleShipGame:
         """
         Prints the current scores of the players.
         """
-        print("\nPlayer Score:", self.player_score)
-        print("Computer Score:", self.computer_score)
+        print("\n")
+        print(colored(">>>>>>>>> Player Score: {} <<<<<<<<<".format(self.player_score), "red", "on_yellow"))
+        print(colored(">>>>>>>> Computer Score: {} <<<<<<<<".format(self.computer_score), "red", "on_yellow"))
 
     def count_hits(self, board):
         """
