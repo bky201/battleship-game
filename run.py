@@ -1,4 +1,9 @@
 from random import randint
+from colorama import Fore, Back, Style
+from colorama import init
+from termcolor import colored
+
+init()
 
 class BattleShipGame:
     def __init__(self):
@@ -21,12 +26,16 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            size = input("Enter the board size (minimum 4): ")
+            print(Back.MAGENTA, Style.BRIGHT)
+            size = input("\nEnter the board size (minimum 4): ")
+            print(Style.RESET_ALL)
+            
             if size.isdigit():
                 size = int(size)
                 if size >= 4:
                     return size
-            print("Invalid board size. Please enter a number greater than or equal to 5.")
+            
+            print(colored("\nInvalid board size. Please enter a number greater than or equal to 5.", "red", 'on_white'))
 
 
     def ship_numbers():
@@ -87,9 +96,9 @@ class BattleShipGame:
                 ):
                     return row - 1, column - 1
                 else:
-                    print("Invalid input or location already guessed. Please enter valid coordinates.")
+                    print(colored("\nInvalid input or location already guessed. Please enter valid coordinates.", "red", "on_white"))
             except ValueError:
-                print("Invalid input. Please enter valid coordinates.")
+                print(colored("\nInvalid input. Please enter valid coordinates.", "red", "on_white"))
 
 
     def create_ships(self, board):
@@ -149,6 +158,8 @@ class BattleShipGame:
             print("\nCongratulations! You win!")
         elif result == 'Computer':
             print("\nGame Over. Computer wins!")
+        else:
+            print("\nA draw play")
 
     def is_game_over(self):
         """
@@ -187,12 +198,13 @@ class BattleShipGame:
         """
         Starts the Battleship game.
         """
-        print("\nLet's play Battleship!                   ")
-        print("The '$' represents the hidden battleships. ")
-        print("The '#' represents a hit.                  ")
-        print("The '0' represents a miss.                 ")
-        print("The 'x' represents a player's missed guess.")
-        print("Good luck!\n                               ")
+        
+        print(colored("\nLet's play Battleship!                     ", "black", "on_white"))
+        print(colored("The '$' represents the hidden battleships. ", "black", "on_white"))
+        print(colored("The '#' represents a hit.                  ", "black", "on_white"))
+        print(colored("The '0' represents a miss.                 ", "black", "on_white"))
+        print(colored("The 'x' represents a player's missed guess.", "black", "on_white"))
+        print(colored("Good luck!                                 ", "black", "on_white"))
 
         self.board_size = self.get_board_size()
         self.Hidden_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
@@ -257,8 +269,11 @@ class BattleShipGame:
         if self.is_game_over():
             if self.player_score > self.computer_score:
                 self.game_over_message('Player')
-            else:
+            elif self.player_score < self.computer_score:
                 self.game_over_message('Computer')
+            else:
+                self.game_over_message('Draw')
+
 
 
     def game_home_page(self):
@@ -266,10 +281,12 @@ class BattleShipGame:
         Displays the game home page and allows the user to choose to play or quit.
         """
         while True:
-            print("\nBattleship Game")
-            print("Enter 1 to Play Game")
-            print("Enter 2 to Quit")
-            choice = input("Enter your choice (1 or 2): ")
+            print(colored("\nBattleship Game     ", "black", "on_yellow"))
+            print(colored("Enter 1 to Play Game", "black", "on_yellow"))
+            print(colored("Enter 2 to Quit     ", "black", "on_yellow"))
+            
+            choice = input(Back.MAGENTA + Style.NORMAL + "\nEnter your choice and press enter (1 or 2): ")
+            print(Style.RESET_ALL)
 
             if choice == '1':
                 self.__init__()  # Reset game state
@@ -278,7 +295,7 @@ class BattleShipGame:
                 print("Goodbye!")
                 break
             else:
-                print("Invalid choice. Please try again.")
+                print(colored("\nInvalid choice. Please try again.", "red", "on_white"))
 
 
 
