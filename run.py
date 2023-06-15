@@ -230,7 +230,7 @@ class BattleShipGame:
 
         print(colored("Computer Board:", "black", "on_white"))
         print("\n")
-        self.print_game_board(self.Guess_Pattern_Computer, 'white', 'on_green')
+        self.print_game_board(self.Guess_Pattern_Computer, 'white', 'on_magenta')
         print("\n")
 
         while not self.is_game_over():
@@ -278,7 +278,7 @@ class BattleShipGame:
                     
                     print(colored("----Computer Guessed row: {} column: {}----".format(row, col), "red", "on_white"))
                     print("\n")
-                    self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_green')
+                    self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_magenta')
                     self.print_score()
                     print("\n")
                     valid_computer_input = True
