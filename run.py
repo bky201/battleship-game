@@ -120,6 +120,24 @@ class BattleShipGame:
         print("\nPlayer Score:", self.player_score)
         print("Computer Score:", self.computer_score)
 
+    def count_hits(self, board):
+        """
+        Counts the number of hits on the game board.
+
+        Args:
+            board (list): The game board to count hits on.
+
+        Returns: 
+            int: The number of hits.
+        """
+
+        count = 0
+        for row in board:
+            for column in row:
+                if column == "#":
+                    count += 1
+        return count
+
     def game_over_message():
         pass
 
