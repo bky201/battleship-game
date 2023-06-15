@@ -36,8 +36,26 @@ class BattleShipGame:
     def guess_ship_location():
         pass
 
-    def create_battle_ships():
-        pass
+    def create_ships(self, board):
+        """
+        Randomly creates ships on the game board.
+
+        Args:
+            board (list): The game board to create ships on.
+        """
+        num_ships = self.board_size
+
+        ship_locations = set()
+        for i in range(num_ships):
+            whi;e True:
+            #Generate random ship location
+            ship_r, ship_c = randint(0, self.board_size - 1), randint(0, self.board_size - 1)
+            ship_location = (ship_r, ship_c)
+            if ship_location not in ship_locations:
+                ship_locations.add(ship_location)
+                #Place ship on the board
+                board[ship_r][ship_c] = "$"
+                break
 
     def count_hits():
         pass
@@ -48,14 +66,36 @@ class BattleShipGame:
     def is_game_over():
         pass
 
-    def play():
-        pass
-
     def computer_guess():
         pass
 
-    def play():
-        pass
+    def play(self):
+        """
+        Starts the Battleship game.
+        """
+        print("\nLet's play Battleship!                   ")
+        print("The '$' represents the hidden battleships. ")
+        print("The '#' represents a hit.                  ")
+        print("The '0' represents a miss.                 ")
+        print("The 'x' represents a player's missed guess.")
+        print("Good luck!\n                               ")
+
+        self.board_size = self.get_board_size()
+        self.Hidden_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
+        self.Hidden_Pattern_Computer = [['-']*self.board_size for _ in range(self.board_size)]
+        self.Guess_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
+        self.Guess_Pattern_Computer = [['-']*self.board_size for _ in range(self.board_size)]
+
+
+
+        
+
+        print("\nPlaye Board:")
+        self.print_game_board(self.Guess_Pattern_Player)
+
+
+        print("\nPlaye Board:")
+        self.print_game_board(self.Guess_Pattern_Player)
 
 
     def game_home_page(self):
