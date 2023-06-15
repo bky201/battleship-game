@@ -237,14 +237,14 @@ class BattleShipGame:
 
                     row, col = player_guess
                     if self.Hidden_Pattern_Computer[row][col] == '$':
-                        print("\nCongratulations! You hit a battleship!")
+                        print(colored("Congratulations! You hit a battleship!", "blue", "on_white"))
                         self.Guess_Pattern_Player[row][col] = '#'
                         self.player_score += 1
                     else:
-                        print("\nyou missed.")
+                        print(colored("you missed.                           ", "blue", "on_white"))
                         self.Guess_Pattern_Player[row][col] = 'x'
 
-                    print("\nPlayer Guessed row:", row, " and column:", col,"\n")
+                    print(colored("You Guessed row: {} column: {}          ".format(row, col), "blue", "on_white"))
                     print(Back.BLUE + Style.NORMAL)
                     self.print_game_board(self.Guess_Pattern_Player)
                     print(Style.RESET_ALL)
@@ -257,16 +257,16 @@ class BattleShipGame:
 
                     row, col = computer_guess
                     if self.Hidden_Pattern_Player[row][col] == '$':
-                        print("\nThe computer hit one of your battleships!")
+                        print(colored("The computer hit one of your battleships!", "red", "on_white"))
                         self.Hidden_Pattern_Player[row][col] = '#'
                         self.Guess_Pattern_Computer[row][col] = '#'
                         self.computer_score += 1
                     else:
-                        print("\nThe computer missed your battleship.")
+                        print(colored("The computer missed your battleship.     ", "red", "on_white"))
                         self.Hidden_Pattern_Player[row][col] = 'O'
                         self.Guess_Pattern_Computer[row][col] = 'O'
-
-                    print("\nThe Computer Guessed row:", row, " and column:", col,"\n")
+                    
+                    print(colored("Computer Guessed row: {} column: {}        ".format(row, col), "red", "on_white"))
                     print(Back.CYAN + Style.NORMAL)
                     self.print_game_board(self.Hidden_Pattern_Player)
                     print(Style.RESET_ALL)
