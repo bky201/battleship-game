@@ -13,8 +13,21 @@ class BattleShipGame:
         self.computer_guessed_locations = []
 
 
-    def board_size():
-        pass
+    def get_board_size(self):
+        """
+        Prompts the user to enter the board size and validates the input.
+
+        Returns:
+            int: The validated board size.
+        """
+        while True:
+            size = input("Enter the board size (minimum 4): ")
+            if size.isdigit():
+                size = int(size)
+                if size >= 4:
+                    return size
+            print("Invalid board size. Please enter a number greater than or equal to 5.")
+
 
     def ship_numbers():
         pass
