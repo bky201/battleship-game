@@ -57,8 +57,12 @@ class BattleShipGame:
                     board[ship_r][ship_c] = "$"
                     break
 
-    def count_hits():
-        pass
+    def print_score(self):
+        """
+        Prints the current scores of the players.
+        """
+        print("\nPlayer Score:", self.player_score)
+        print("Computer Score:", self.computer_score)
 
     def game_over_message():
         pass
@@ -89,12 +93,12 @@ class BattleShipGame:
         self.create_ships(self.Hidden_Pattern_Player)
         self.create_ships(self.Hidden_Pattern_Computer)
 
-        print("\nPlaye Board:")
+        print("\nPlayer Board:")
         self.print_game_board(self.Guess_Pattern_Player)
 
 
-        print("\nPlaye Board:")
-        self.print_game_board(self.Guess_Pattern_Player)
+        print("\nComputer Board:")
+        self.print_game_board(self.Guess_Pattern_Computer)
 
 
     def game_home_page(self):
