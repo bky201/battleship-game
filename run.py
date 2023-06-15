@@ -150,8 +150,15 @@ class BattleShipGame:
         elif result == 'Computer':
             print("\nGame Over. Computer wins!")
 
-    def is_game_over():
-        pass
+    def is_game_over(self):
+        """
+        Checks if the game is over.
+
+        Returns:
+            bool: True if the game is over, False otherwise.
+        """
+        num_ships = self.board_size
+        return self.player_score >= num_ships or self.computer_score >= num_ships
 
     def computer_guess():
         pass
