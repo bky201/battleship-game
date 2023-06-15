@@ -298,7 +298,9 @@ class BattleShipGame:
                 self.__init__()  # Reset game state
                 self.play()
             elif choice == '2':
-                print("Goodbye!")
+                print(colored("------------------------", "blue", "on_white"))
+                print(colored("------- Goodbye! -------", "blue", "on_white"))
+                print(colored("------------------------", "blue", "on_white"))
                 break
             else:
                 print(colored("\nInvalid choice. Please try again.", "red", "on_white"))
