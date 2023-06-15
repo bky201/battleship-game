@@ -262,7 +262,25 @@ class BattleShipGame:
 
 
     def game_home_page(self):
-        pass
+        """
+        Displays the game home page and allows the user to choose to play or quit.
+        """
+        while True:
+            print("\nBattleship Game")
+            print("Enter 1 to Play Game")
+            print("Enter 2 to Quit")
+            choice = input("Enter your choice (1 or 2): ")
+
+            if choice == '1':
+                self.__init__()  # Reset game state
+                self.play()
+            elif choice == '2':
+                print("Goodbye!")
+                break
+            else:
+                print("Invalid choice. Please try again.")
+
+
 
 
 if __name__ == '__main__':
