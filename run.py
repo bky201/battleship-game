@@ -30,8 +30,17 @@ class BattleShipGame:
         for i, row in enumerate(board):
             print(str(i + 1) + '|' + '|'.join(row) + '|')
 
-    def validate_input():
-        pass
+    def is_valid_input(self, value):
+        """
+        Checks if the input value is valid.
+
+        Args:
+            value (str): The input value to check.
+
+        Returns:
+            bool: True if the input value is valid, False otherwise.
+        """
+        return value in [str(i) for i in range(1, self.board_size +1)]
 
     def guess_ship_location():
         pass
