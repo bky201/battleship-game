@@ -42,8 +42,42 @@ class BattleShipGame:
         """
         return value in [str(i) for i in range(1, self.board_size +1)]
 
-    def guess_ship_location():
-        pass
+    def get_unique_ship_location(self, guessed_locations):
+        """
+        Gets a unique ship location from the user.
+        Args:
+            guessed_locations (list): The list of already guessed locations.
+        Returns:
+            tuple: The row and column indices of the ship location.
+                    Returns None if all possible guesses have been made.
+        """
+        num_rows = len(self.Hidden_Pattern_Player)
+        num_cols = len(self.Hidden_Pattern_Computer)
+        max_guesses = num_rows * num_cols
+
+        num_guesses = len(guessed_locations)
+        if num_guesses >= max_guesses:
+            print("You have made all possible guesses. The game is over.")
+            return None
+        
+        while True:
+            try:
+                row = int(input(f'\nPlease enter a ship row 1-{num_rows}: '))
+                column = int(input(f'Please enter a ship column 1-{num_cols}: '))
+
+                if (
+                    1 <= row <= num_rows
+                    and 1 <= column <= num_cols
+                    and (row - 1, column - 1) not in guessed_locations
+                    and self.is_valid_input(str(row))
+                    and self.is_valid_input(str(column))
+                ):
+                    return row - 1, column - 1
+                else:
+                    print("Invalid input or location already guessed. Please enter valid coordinates.")
+            except ValueError:
+                print("Invalid input. Please enter valid coordinates.")
+
 
     def create_ships(self, board):
         """
