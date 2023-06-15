@@ -210,6 +210,56 @@ class BattleShipGame:
         print("\nComputer Board:")
         self.print_game_board(self.Guess_Pattern_Computer)
 
+        while not self.is_game_over():
+            valid_player_input = False
+            valid_computer_input = False
+
+            while not valid_player_input or not valid_computer_input:
+                if not valid_player_input:
+                    player_guess = self.get_unique_ship_location(self.player_guessed_locations)
+                    if player_guess is None:
+                        break
+
+                    row, col = player_guess
+                    if self.Hidden_Pattern_Computer[row][col] == '$':
+                        print("\nCongratulations! You hit a battleship!")
+                        self.Guess_Pattern_Player[row][col] = '#'
+                        self.player_score += 1
+                    else:
+                        print("\nyou missed.")
+                        self.Guess_Pattern_Player[row][col] = 'x'
+
+                    print("\nPlayer Guessed row:", row, " and column:", col,"\n")
+                    self.print_game_board(self.Guess_Pattern_Player)
+                    valid_player_input = True
+
+                if not valid_computer_input:
+                    computer_guess = self.computer_guess()
+                    if computer_guess is None:
+                        break
+
+                    row, col = computer_guess
+                    if self.Hidden_Pattern_Player[row][col] == '$':
+                        print("\nThe computer hit one of your battleships!")
+                        self.Hidden_Pattern_Player[row][col] = '#'
+                        self.Guess_Pattern_Computer[row][col] = '#'
+                        self.computer_score += 1
+                    else:
+                        print("\nThe computer missed your battleship.")
+                        self.Hidden_Pattern_Player[row][col] = 'O'
+                        self.Guess_Pattern_Computer[row][col] = 'O'
+
+                    print("\nThe Computer Guessed row:", row, " and column:", col,"\n")
+                    self.print_game_board(self.Hidden_Pattern_Player)
+                    self.print_score()
+                    valid_computer_input = True
+
+        if self.is_game_over():
+            if self.player_score > self.computer_score:
+                self.game_over_message('Player')
+            else:
+                self.game_over_message('Computer')
+
 
     def game_home_page(self):
         pass
