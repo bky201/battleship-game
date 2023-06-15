@@ -2,6 +2,7 @@ from random import randint
 from colorama import Fore, Back, Style
 from colorama import init
 from termcolor import colored
+import pyfiglet
 
 init()
 
@@ -26,7 +27,7 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            size = input(Back.MAGENTA + Style.BRIGHT + "\nEnter the board size (minimum 4) and press Enter: ")
+            size = input(Back.MAGENTA + Style.BRIGHT + "Enter the board size (minimum 4) and press Enter:\n")
             print(Style.RESET_ALL)
             
             if size.isdigit():
@@ -80,8 +81,8 @@ class BattleShipGame:
         
         while True:
             try:
-                row = int(input(f'\nPlease enter a ship row 1-{num_rows}: '))
-                column = int(input(f'Please enter a ship column 1-{num_cols}: '))
+                row = int(input(f'Please enter a ship row 1-{num_rows}:\n'))
+                column = int(input(f'Please enter a ship column 1-{num_cols}:\n'))
 
                 if (
                     1 <= row <= num_rows
@@ -153,13 +154,19 @@ class BattleShipGame:
         """
         if result == 'Player':
             print("\n")
-            print(colored("******Congratulations! You win!******", "red", "on_yellow"))
+            game_over = pyfiglet.figlet_format("Congratulations! You win!", font = "bubble" )
+            print(colored(game_over, "black", "on_white"))
+            
         elif result == 'Computer':
             print("\n")
-            print(colored("******Game Over. Computer wins!******", "red", "on_white"))
+            game_over = pyfiglet.figlet_format("Game Over. Computer wins!", font = "bubble" )
+            print(colored(game_over, "black", "on_white"))
+            
         else:
             print("\n")
-            print(colored("*************A draw play*************", "red", "on_white"))
+            game_over = pyfiglet.figlet_format("** A draw play ", font = "bubble" )
+            print(colored(game_over, "black", "on_white"))
+            
 
     def is_game_over(self):
         """
@@ -205,6 +212,7 @@ class BattleShipGame:
         print(colored("The '0' represents a miss.                 ", "black", "on_white"))
         print(colored("The 'x' represents a player's missed guess.", "black", "on_white"))
         print(colored("Good luck!                                 ", "black", "on_white"))
+        print("\n")
 
         self.board_size = self.get_board_size()
         self.Hidden_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
@@ -215,12 +223,15 @@ class BattleShipGame:
         self.create_ships(self.Hidden_Pattern_Player)
         self.create_ships(self.Hidden_Pattern_Computer)
 
-        print(Back.WHITE + Style.NORMAL + "\nPlayer Board:" + Style.RESET_ALL)
+        print(colored("Player Board:", "black", "on_white"))
+        print("\n")
         self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
+        print("\n")
 
-
-        print(Back.LIGHTCYAN_EX + Style.NORMAL + "\nComputer Board:")
+        print(colored("Computer Board:", "black", "on_white"))
+        print("\n")
         self.print_game_board(self.Guess_Pattern_Computer, 'white', 'on_green')
+        print("\n")
 
         while not self.is_game_over():
             valid_player_input = False
@@ -269,6 +280,7 @@ class BattleShipGame:
                     print("\n")
                     self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_green')
                     self.print_score()
+                    print("\n")
                     valid_computer_input = True
 
         if self.is_game_over():
@@ -287,20 +299,22 @@ class BattleShipGame:
         """
         while True:
             print("\n")
-            print(colored("Battleship Game     ", "black", "on_yellow"))
-            print(colored("Enter 1 to Play Game", "black", "on_yellow"))
-            print(colored("Enter 2 to Quit     ", "black", "on_yellow"))
-            
-            choice = input(Back.MAGENTA + Style.NORMAL + "\nEnter your choice and press enter (1 or 2): ")
+            game = pyfiglet.figlet_format("Battleship Game", font = "bulbhead" )
+            print(colored(game, "black", "on_white"))
+            print("\n")
+            print(colored("++++++++++ Enter 1 to Play Game ++++++++++", "black", "on_yellow"))
+            print(colored("++++++++++++ Enter 2 to Quit  ++++++++++++", "black", "on_yellow"))
+            print("\n")
+            choice = input(Back.MAGENTA + Style.NORMAL + "Enter your choice and press enter (1 or 2):\n")
             print(Style.RESET_ALL)
 
             if choice == '1':
                 self.__init__()  # Reset game state
                 self.play()
             elif choice == '2':
-                print(colored("------------------------", "blue", "on_white"))
-                print(colored("------- Goodbye! -------", "blue", "on_white"))
-                print(colored("------------------------", "blue", "on_white"))
+                print("\n")
+                game = pyfiglet.figlet_format("Goodbye!", font = "bulbhead" )
+                print(colored(game, "blue", "on_white"))
                 break
             else:
                 print(colored("\nInvalid choice. Please try again.", "red", "on_white"))
