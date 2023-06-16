@@ -5,7 +5,6 @@ chardet
 click
 colorama
 cryptography
-dbus-python
 defer
 distro
 distro-info
