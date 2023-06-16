@@ -39,7 +39,6 @@ pyjwt
 pymacaroons
 pynacl
 pyrfc3339
-python-apt
 python-dateutil
 python-debian
 pytz
