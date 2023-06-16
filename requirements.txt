@@ -1,6 +1,5 @@
 bcrypt
 blinker
-brlapi
 certifi
 chardet
 click
