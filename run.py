@@ -45,7 +45,7 @@ class BattleShipGame:
         Args:
             board (list): The game board to print.
         """
-        print(colored(' ' + ' '.join([str(i) for i in range(1, self.board_size + 1)]), color, background))
+        print(colored(' ' + ' '.join([str(i) for i in range(1, self.board_size + 1)]) + '  ', color, background))
         for i, row in enumerate(board):
             print(colored(str(i + 1) + '|' + '|'.join(row) + '|', color, background))
 
@@ -81,8 +81,10 @@ class BattleShipGame:
         
         while True:
             try:
-                row = int(input(f'Please enter a ship row 1-{num_rows}:'))
-                column = int(input(f'Please enter a ship column 1-{num_cols}:'))
+                row, column = input(f'Please enter a ship row 1-{num_rows} and column 1-{num_cols} (separated by "+" ): ').split('+')
+                row = int(row)
+                column = int(column)
+
 
                 if (
                     1 <= row <= num_rows
