@@ -8,7 +8,6 @@ cryptography
 defer
 distro
 distro-info
-duplicity
 fasteners
 future
 idna
@@ -31,10 +30,8 @@ pillow
 pip-chill
 protobuf
 ptyprocess
-pycups
 pydvbcss
 pyfiglet
-pygobject
 pyjwt
 pymacaroons
 pynacl
