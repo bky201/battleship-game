@@ -50,7 +50,6 @@ secretstorage
 systemd-python
 termcolor
 urllib3
-usb-creator
 wadllib
 xdg
 xkit
