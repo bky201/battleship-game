@@ -49,7 +49,6 @@ requests
 secretstorage
 systemd-python
 termcolor
-unattended-upgrades
 urllib3
 usb-creator
 wadllib
