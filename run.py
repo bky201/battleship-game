@@ -27,7 +27,7 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            size = input(Back.MAGENTA + Style.BRIGHT + "Enter the board size (minimum 4) and press Enter:\n")
+            size = input(Back.MAGENTA + Style.BRIGHT + "Enter the board size (minimum 4) and press Enter:")
             print(Style.RESET_ALL)
             
             if size.isdigit():
@@ -81,8 +81,8 @@ class BattleShipGame:
         
         while True:
             try:
-                row = int(input(f'Please enter a ship row 1-{num_rows}:\n'))
-                column = int(input(f'Please enter a ship column 1-{num_cols}:\n'))
+                row = int(input(f'Please enter a ship row 1-{num_rows}:'))
+                column = int(input(f'Please enter a ship column 1-{num_cols}:'))
 
                 if (
                     1 <= row <= num_rows
@@ -302,7 +302,7 @@ class BattleShipGame:
             print(colored("++++++++++ Enter 1 to Play Game ++++++++++", "black", "on_yellow"))
             print(colored("++++++++++++ Enter 2 to Quit  ++++++++++++", "black", "on_yellow"))
             print("\n")
-            choice = input(Back.MAGENTA + Style.NORMAL + "Enter your choice and press enter (1 or 2):\n")
+            choice = input(Back.MAGENTA + Style.NORMAL + "Enter your choice and press enter (1 or 2):")
             print(Style.RESET_ALL)
 
             if choice == '1':
