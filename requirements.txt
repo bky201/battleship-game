@@ -52,5 +52,4 @@ termcolor
 urllib3
 wadllib
 xdg
-xkit
 zipp
