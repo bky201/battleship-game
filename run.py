@@ -223,13 +223,12 @@ class BattleShipGame:
         self.create_ships(self.Hidden_Pattern_Player)
         self.create_ships(self.Hidden_Pattern_Computer)
 
-        print(colored("Player Board:", "black", "on_white"))
         print("\n")
+        print(colored("Player Board:", "black", "on_white"))
         self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
         print("\n")
 
         print(colored("Computer Board:", "black", "on_white"))
-        print("\n")
         self.print_game_board(self.Guess_Pattern_Computer, 'white', 'on_magenta')
         print("\n")
 
@@ -254,7 +253,6 @@ class BattleShipGame:
                         self.Guess_Pattern_Player[row][col] = 'x'
 
                     print(colored("-----You Guessed row: {} column: {}-----".format(row, col), "blue", "on_white"))
-                    print("\n")
                     
                     self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
                     valid_player_input = True
@@ -277,7 +275,6 @@ class BattleShipGame:
                         self.Guess_Pattern_Computer[row][col] = 'O'
                     
                     print(colored("----Computer Guessed row: {} column: {}----".format(row, col), "red", "on_white"))
-                    print("\n")
                     self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_magenta')
                     self.print_score()
                     print("\n")
