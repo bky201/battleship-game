@@ -44,6 +44,7 @@ ptyprocess==0.7.0
 pycairo==1.20.1
 pycparser==2.21
 pycups==2.0.1
+pydvbcss==0.5.2
 pyfiglet==0.8.post1
 PyGObject==3.42.1
 PyJWT==2.3.0
