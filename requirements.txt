@@ -49,7 +49,6 @@ requests
 secretstorage
 systemd-python
 termcolor
-ubuntu-advantage-tools
 ubuntu-drivers-common
 ufw
 unattended-upgrades
