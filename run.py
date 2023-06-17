@@ -160,15 +160,15 @@ class BattleShipGame:
         if result == 'Player':
             print("\n")
             game_over = pyfiglet.figlet_format("Great You win!", font="bubble")
-            print(colored(game_over, "black", "on_white"))
+            print(Back.WHITE+Style.NORMAL+game_over+Style.RESET_ALL)
         elif result == 'Computer':
             print("\n")
             game_over = pyfiglet.figlet_format("Computer wins!", font="bubble")
-            print(colored(game_over, "black", "on_white"))
+            print(Back.WHITE+Style.NORMAL+game_over+Style.RESET_ALL)
         else:
             print("\n")
             game_over = pyfiglet.figlet_format(" A draw play ", font="bubble")
-            print(colored(game_over, "black", "on_white"))
+            print(Back.WHITE+Style.NORMAL+game_over+Style.RESET_ALL)
 
     def is_game_over(self):
         """
@@ -303,9 +303,9 @@ class BattleShipGame:
         while True:
             print("\n")
             battle = pyfiglet.figlet_format("Battleship", font="bulbhead")
-            print(colored(battle, "black", "on_white"))
+            print(Back.WHITE+Style.NORMAL+battle+Style.RESET_ALL)
             game = pyfiglet.figlet_format("***** Game *****", font="bulbhead")
-            print(colored(game, "black", "on_white"))
+            print(Back.WHITE+Style.NORMAL+game+Style.RESET_ALL)
             print("\n")
             print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
             print(colored(" Enter 2 to Quit      ", "black", "on_yellow"))
@@ -319,7 +319,7 @@ class BattleShipGame:
             elif choice == '2':
                 print("\n")
                 game = pyfiglet.figlet_format("Goodbye!", font="bulbhead")
-                print(colored(game, "blue", "on_white"))
+                print(colored("\n", game, "blue", "on_white"))
                 break
             else:
                 print(colored("\nInvalid input try again.", "red", "on_white"))
