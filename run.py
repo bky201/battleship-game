@@ -99,9 +99,11 @@ class BattleShipGame:
                 ):
                     return None
                 else:
-                    print(colored("\nInvalid location.", "red", "on_white"))
+                    print(colored("Invalid location.", "red", "on_white"))
+                    print("\n")
             except ValueError:
-                print(colored("\nInvalid input. ", "red", "on_white"))
+                print(colored("Invalid input. ", "red", "on_white"))
+                print("\n")
 
     def create_ships(self, board):
         """
