@@ -131,9 +131,8 @@ class BattleShipGame:
         """
         Prints the current scores of the players.
         """
-        print(Back.YELLOW + Style.NORMAL)
-        print("> Player Score: {} <".format(self.player_score))
-        print(" Computer Score: {} ".format(self.com_score)+Style.RESET_ALL)
+        print(colored(" Player Score  : {} ".format(self.player_score), "red"))
+        print(colored(" Computer Score: {} ".format(self.com_score), "red"))
 
     def count_hits(self, board):
         """
@@ -251,7 +250,7 @@ class BattleShipGame:
                     row, col = player_guess
                     print("\n")
                     if self.Hidden_Pattern_Comp[row][col] == '$':
-                        print(colored("You hit a ship!", "blue", "on_white"))
+                        print(colored("You hit one!", "blue", "on_white"))
                         self.Player_Bord[row][col] = '#'
                         self.player_score += 1
                     else:
@@ -277,13 +276,14 @@ class BattleShipGame:
                         self.Guess_Pattern_Comp[row][col] = '#'
                         self.com_score += 1
                     else:
-                        print(colored("computer missed.", "red", "on_white"))
+                        print(colored("computer missed.  ", "red", "on_white"))
                         self.Hidden_Bord[row][col] = 'O'
                         self.Guess_Pattern_Comp[row][col] = 'O'
-                    print(colored("Computer Guessed", "red", "on_white"))
+                    print(colored("Computer Guessed  ", "red", "on_white"))
                     print(colored("row: {}   ".format(row), "red", "on_white"))
                     print(colored("col: {}   ".format(col), "red", "on_white"))
                     self.print_board(self.Hidden_Bord, 'white', 'on_magenta')
+                    print("\n")
                     self.print_score()
                     print("\n")
                     valid_computer_input = True
