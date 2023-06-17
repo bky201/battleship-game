@@ -302,11 +302,13 @@ class BattleShipGame:
         """
         while True:
             print("\n")
-            game = pyfiglet.figlet_format("Battleship Game", font="bulbhead")
+            battle = pyfiglet.figlet_format("Battleship", font="bulbhead")
+            print(colored(battle, "black", "on_white"))
+            game = pyfiglet.figlet_format("    Game    ", font="bulbhead")
             print(colored(game, "black", "on_white"))
             print("\n")
             print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
-            print(colored(" Enter 2 to Quit  ", "black", "on_yellow"))
+            print(colored(" Enter 2 to Quit      ", "black", "on_yellow"))
             print("\n")
             choice = input(Back.MAGENTA + Style.NORMAL + "Enter (1 or 2):")
             print(Style.RESET_ALL)
