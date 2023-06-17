@@ -6,20 +6,20 @@ import pyfiglet
 
 init()
 
+
 class BattleShipGame:
     def __init__(self):
-        self.board_size = 0
+        self.size = 0
         self.player_score = 0
-        self.computer_score = 0
-        self.Hidden_Pattern_Player = []
-        self.Hidden_Pattern_Computer = []
-        self.Guess_Pattern_Player = []
-        self.Guess_Pattern_Computer = []
+        self.com_score = 0
+        self.Hidden_Bord = []
+        self.Hidden_Pattern_Comp = []
+        self.Player_Bord = []
+        self.Guess_Pattern_Comp = []
         self.player_guessed_locations = []
         self.computer_guessed_locations = []
 
-
-    def get_board_size(self):
+    def get_size(self):
         """
         Prompts the user to enter the board size and validates the input.
 
@@ -27,27 +27,25 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            size = input(Back.MAGENTA + Style.BRIGHT + "Enter the board size (minimum 4) and press Enter:")
+            print(Back.MAGENTA + Style.BRIGHT + "Enter the board size ")
+            size = input(Back.MAGENTA + Style.BRIGHT + "(minimum 4):")
             print(Style.RESET_ALL)
-            
             if size.isdigit():
                 size = int(size)
                 if size >= 4:
                     return size
-            
-            print(colored("\nInvalid board size. Please enter a number greater than or equal to 5.", "red", 'on_white'))
+            print(colored("\nInvalid board size.", "red", 'on_white'))
 
-
-    def print_game_board(self, board, color, background):
+    def print_board(self, board, clr, bkgrnd):
         """
         Prints the game board.
 
         Args:
             board (list): The game board to print.
         """
-        print(colored(' ' + ' '.join([str(i) for i in range(1, self.board_size + 1)]) + '  ', color, background))
+        print(' ' + ' '.join([str(i) for i in range(1, self.size + 1)]) + '  ')
         for i, row in enumerate(board):
-            print(colored(str(i + 1) + '|' + '|'.join(row) + '|', color, background))
+            print(colored(str(i + 1) + '|' + '|'.join(row) + '|', clr, bkgrnd))
 
     def is_valid_input(self, value):
         """
@@ -59,9 +57,9 @@ class BattleShipGame:
         Returns:
             bool: True if the input value is valid, False otherwise.
         """
-        return value in [str(i) for i in range(1, self.board_size +1)]
+        return value in [str(i) for i in range(1, self.size + 1)]
 
-    def get_unique_ship_location(self, guessed_locations):
+    def uniq_loc(self, guessed_locations):
         """
         Gets a unique ship location from the user.
         Args:
@@ -70,35 +68,42 @@ class BattleShipGame:
             tuple: The row and column indices of the ship location.
                     Returns None if all possible guesses have been made.
         """
-        num_rows = len(self.Hidden_Pattern_Player)
-        num_cols = len(self.Hidden_Pattern_Computer)
-        max_guesses = num_rows * num_cols
+        rows = len(self.Hidden_Bord)
+        cols = len(self.Hidden_Bord[0])
+        max_guesses = rows * cols
 
         num_guesses = len(guessed_locations)
         if num_guesses >= max_guesses:
             print("You have made all possible guesses. The game is over.")
             return None
-        
+
         while True:
             try:
-                row, column = input(f'Please enter a ship row 1-{num_rows} and column 1-{num_cols} (separated by "+" ): ').split('+')
+                print('Enter a ship row and column separated by "+"(r+c)')
+                row, column = input(f'row 1-{rows} col 1-{cols}: ').split('+')
                 row = int(row)
                 column = int(column)
 
-
                 if (
-                    1 <= row <= num_rows
-                    and 1 <= column <= num_cols
+                    1 <= row <= rows
+                    and 1 <= column <= cols
                     and (row - 1, column - 1) not in guessed_locations
                     and self.is_valid_input(str(row))
                     and self.is_valid_input(str(column))
                 ):
                     return row - 1, column - 1
+                elif (
+                    1 <= row <= rows
+                    and 1 <= column <= cols
+                    and (row - 1, column - 1) in guessed_locations
+                    and self.is_valid_input(str(row))
+                    and self.is_valid_input(str(column))
+                ):
+                    return None
                 else:
-                    print(colored("\nInvalid input or location already guessed. Please enter valid coordinates.", "red", "on_white"))
+                    print(colored("\nInvalid location.", "red", "on_white"))
             except ValueError:
-                print(colored("\nInvalid input. Please enter valid coordinates.", "red", "on_white"))
-
+                print(colored("\nInvalid input. ", "red", "on_white"))
 
     def create_ships(self, board):
         """
@@ -107,17 +112,18 @@ class BattleShipGame:
         Args:
             board (list): The game board to create ships on.
         """
-        num_ships = self.board_size
+        nums = self.size
 
         ship_locations = set()
-        for i in range(num_ships):
+        for i in range(nums):
             while True:
-                #Generate random ship location
-                ship_r, ship_c = randint(0, self.board_size - 1), randint(0, self.board_size - 1)
+                # Generate random ship location
+                ship_r = randint(0, self.size - 1)
+                ship_c = randint(0, self.size - 1)
                 ship_location = (ship_r, ship_c)
                 if ship_location not in ship_locations:
                     ship_locations.add(ship_location)
-                    #Place ship on the board
+                    # Place ship on the board
                     board[ship_r][ship_c] = "$"
                     break
 
@@ -125,9 +131,9 @@ class BattleShipGame:
         """
         Prints the current scores of the players.
         """
-        print("\n")
-        print(colored(">>>>>>>>> Player Score: {} <<<<<<<<<".format(self.player_score), "red", "on_yellow"))
-        print(colored(">>>>>>>> Computer Score: {} <<<<<<<<".format(self.computer_score), "red", "on_yellow"))
+        print(Back.YELLOW + Style.NORMAL)
+        print("> Player Score: {} <".format(self.player_score))
+        print(" Computer Score: {} ".format(self.com_score)+Style.RESET_ALL)
 
     def count_hits(self, board):
         """
@@ -135,11 +141,9 @@ class BattleShipGame:
 
         Args:
             board (list): The game board to count hits on.
-
-        Returns: 
+        Returns:
             int: The number of hits.
         """
-
         count = 0
         for row in board:
             for column in row:
@@ -156,19 +160,16 @@ class BattleShipGame:
         """
         if result == 'Player':
             print("\n")
-            game_over = pyfiglet.figlet_format("Congratulations! You win!", font = "bubble" )
+            game_over = pyfiglet.figlet_format("Great You win!", font="bubble")
             print(colored(game_over, "black", "on_white"))
-            
         elif result == 'Computer':
             print("\n")
-            game_over = pyfiglet.figlet_format("Game Over. Computer wins!", font = "bubble" )
+            game_over = pyfiglet.figlet_format("Computer wins!", font="bubble")
             print(colored(game_over, "black", "on_white"))
-            
         else:
             print("\n")
-            game_over = pyfiglet.figlet_format("** A draw play ", font = "bubble" )
+            game_over = pyfiglet.figlet_format(" A draw play ", font="bubble")
             print(colored(game_over, "black", "on_white"))
-            
 
     def is_game_over(self):
         """
@@ -177,8 +178,8 @@ class BattleShipGame:
         Returns:
             bool: True if the game is over, False otherwise.
         """
-        num_ships = self.board_size
-        return self.player_score >= num_ships or self.computer_score >= num_ships
+        nums = self.size
+        return self.player_score >= nums or self.com_score >= nums
 
     def computer_guess(self):
         """
@@ -188,16 +189,15 @@ class BattleShipGame:
             tuple: The row and column indices of the computer's guess.
                    Returns None if all possible guesses have been made.
         """
-        num_rows = len(self.Hidden_Pattern_Player)
-        num_cols = len(self.Hidden_Pattern_Player[0])
-        max_guesses = num_rows * num_cols
+        rows = len(self.Hidden_Bord)
+        cols = len(self.Hidden_Bord[0])
+        max_guesses = rows * cols
 
         if len(self.computer_guessed_locations) == max_guesses:
             return None
 
         while True:
-            row = randint(0, num_rows - 1)
-            col = randint(0, num_cols - 1)
+            (row, col) = (randint(0, rows - 1), randint(0, rows - 1))
             guess = (row, col)
             if guess not in self.computer_guessed_locations:
                 self.computer_guessed_locations.append(guess)
@@ -207,31 +207,30 @@ class BattleShipGame:
         """
         Starts the Battleship game.
         """
-        
-        print(colored("\nLet's play Battleship!                     ", "black", "on_white"))
-        print(colored("The '$' represents the hidden battleships. ", "black", "on_white"))
-        print(colored("The '#' represents a hit.                  ", "black", "on_white"))
-        print(colored("The '0' represents a miss.                 ", "black", "on_white"))
-        print(colored("The 'x' represents a player's missed guess.", "black", "on_white"))
-        print(colored("Good luck!                                 ", "black", "on_white"))
+        print(colored("\nLet's play Battleship!      ", "black", "on_white"))
+        print(colored("The '$'-hidden battleships. ", "black", "on_white"))
+        print(colored("The '#' represents a hit.   ", "black", "on_white"))
+        print(colored("The '0' represents a miss.  ", "black", "on_white"))
+        print(colored("The 'x' a player's missed.  ", "black", "on_white"))
+        print(colored("Good luck!                  ", "black", "on_white"))
         print("\n")
 
-        self.board_size = self.get_board_size()
-        self.Hidden_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
-        self.Hidden_Pattern_Computer = [['-']*self.board_size for _ in range(self.board_size)]
-        self.Guess_Pattern_Player = [['-']*self.board_size for _ in range(self.board_size)]
-        self.Guess_Pattern_Computer = [['-']*self.board_size for _ in range(self.board_size)]
+        self.size = self.get_size()
+        self.Hidden_Bord = [['-']*self.size for _ in range(self.size)]
+        self.Hidden_Pattern_Comp = [['-']*self.size for _ in range(self.size)]
+        self.Player_Bord = [['-']*self.size for _ in range(self.size)]
+        self.Guess_Pattern_Comp = [['-']*self.size for _ in range(self.size)]
 
-        self.create_ships(self.Hidden_Pattern_Player)
-        self.create_ships(self.Hidden_Pattern_Computer)
+        self.create_ships(self.Hidden_Bord)
+        self.create_ships(self.Hidden_Pattern_Comp)
 
         print("\n")
         print(colored("Player Board:", "black", "on_white"))
-        self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
+        self.print_board(self.Player_Bord, 'white', 'on_blue')
         print("\n")
 
         print(colored("Computer Board:", "black", "on_white"))
-        self.print_game_board(self.Guess_Pattern_Computer, 'white', 'on_magenta')
+        self.print_board(self.Guess_Pattern_Comp, 'white', 'on_magenta')
         print("\n")
 
         while not self.is_game_over():
@@ -240,23 +239,29 @@ class BattleShipGame:
 
             while not valid_player_input or not valid_computer_input:
                 if not valid_player_input:
-                    player_guess = self.get_unique_ship_location(self.player_guessed_locations)
+                    player_guess = self.uniq_loc(self.player_guessed_locations)
+                    self.player_guessed_locations.append(player_guess)
                     if player_guess is None:
+                        print("\n")
+                        print(colored(">> Already Guessed", "red", "on_white"))
+                        print(colored(">> Try again      ", "red", "on_white"))
+                        print("\n")
                         break
 
                     row, col = player_guess
                     print("\n")
-                    if self.Hidden_Pattern_Computer[row][col] == '$':
-                        print(colored("Congratulations! You hit a battleship!", "blue", "on_white"))
-                        self.Guess_Pattern_Player[row][col] = '#'
+                    if self.Hidden_Pattern_Comp[row][col] == '$':
+                        print(colored("You hit a ship!", "blue", "on_white"))
+                        self.Player_Bord[row][col] = '#'
                         self.player_score += 1
                     else:
-                        print(colored("--------------you missed.-------------", "blue", "on_white"))
-                        self.Guess_Pattern_Player[row][col] = 'x'
+                        print(colored("you missed.-", "blue", "on_white"))
+                        self.Player_Bord[row][col] = 'x'
 
-                    print(colored("-----You Guessed row: {} column: {}-----".format(row, col), "blue", "on_white"))
-                    
-                    self.print_game_board(self.Guess_Pattern_Player, 'white', 'on_blue')
+                    print(colored("Your Guessed", "blue", "on_white"))
+                    print(colored("row: {}  ".format(row), "blue", "on_white"))
+                    print(colored("col: {}  ".format(col), "blue", "on_white"))
+                    self.print_board(self.Player_Bord, 'white', 'on_blue')
                     valid_player_input = True
 
                 if not valid_computer_input:
@@ -266,45 +271,44 @@ class BattleShipGame:
 
                     row, col = computer_guess
                     print("\n")
-                    if self.Hidden_Pattern_Player[row][col] == '$':
-                        print(colored("The computer hit one of your battleships!", "red", "on_white"))
-                        self.Hidden_Pattern_Player[row][col] = '#'
-                        self.Guess_Pattern_Computer[row][col] = '#'
-                        self.computer_score += 1
+                    if self.Hidden_Bord[row][col] == '$':
+                        print(colored("computer hits ship", "red", "on_white"))
+                        self.Hidden_Bord[row][col] = '#'
+                        self.Guess_Pattern_Comp[row][col] = '#'
+                        self.com_score += 1
                     else:
-                        print(colored("---The computer missed your battleship.--", "red", "on_white"))
-                        self.Hidden_Pattern_Player[row][col] = 'O'
-                        self.Guess_Pattern_Computer[row][col] = 'O'
-                    
-                    print(colored("----Computer Guessed row: {} column: {}----".format(row, col), "red", "on_white"))
-                    self.print_game_board(self.Hidden_Pattern_Player, 'white', 'on_magenta')
+                        print(colored("computer missed.", "red", "on_white"))
+                        self.Hidden_Bord[row][col] = 'O'
+                        self.Guess_Pattern_Comp[row][col] = 'O'
+                    print(colored("Computer Guessed", "red", "on_white"))
+                    print(colored("row: {}   ".format(row), "red", "on_white"))
+                    print(colored("col: {}   ".format(col), "red", "on_white"))
+                    self.print_board(self.Hidden_Bord, 'white', 'on_magenta')
                     self.print_score()
                     print("\n")
                     valid_computer_input = True
 
         if self.is_game_over():
-            if self.player_score > self.computer_score:
+            if self.player_score > self.com_score:
                 self.game_over_message('Player')
-            elif self.player_score < self.computer_score:
+            elif self.player_score < self.com_score:
                 self.game_over_message('Computer')
             else:
                 self.game_over_message('Draw')
 
-
-
     def game_home_page(self):
         """
-        Displays the game home page and allows the user to choose to play or quit.
+        Displays the home page and allows the user to choose to play or quit.
         """
         while True:
             print("\n")
-            game = pyfiglet.figlet_format("Battleship Game", font = "bulbhead" )
+            game = pyfiglet.figlet_format("Battleship Game", font="bulbhead")
             print(colored(game, "black", "on_white"))
             print("\n")
-            print(colored("++++++++++ Enter 1 to Play Game ++++++++++", "black", "on_yellow"))
-            print(colored("++++++++++++ Enter 2 to Quit  ++++++++++++", "black", "on_yellow"))
+            print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
+            print(colored(" Enter 2 to Quit  ", "black", "on_yellow"))
             print("\n")
-            choice = input(Back.MAGENTA + Style.NORMAL + "Enter your choice and press enter (1 or 2):")
+            choice = input(Back.MAGENTA + Style.NORMAL + "Enter (1 or 2):")
             print(Style.RESET_ALL)
 
             if choice == '1':
@@ -312,13 +316,11 @@ class BattleShipGame:
                 self.play()
             elif choice == '2':
                 print("\n")
-                game = pyfiglet.figlet_format("Goodbye!", font = "bulbhead" )
+                game = pyfiglet.figlet_format("Goodbye!", font="bulbhead")
                 print(colored(game, "blue", "on_white"))
                 break
             else:
-                print(colored("\nInvalid choice. Please try again.", "red", "on_white"))
-
-
+                print(colored("\nInvalid input try again.", "red", "on_white"))
 
 
 if __name__ == '__main__':
