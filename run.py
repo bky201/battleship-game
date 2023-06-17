@@ -304,7 +304,7 @@ class BattleShipGame:
             print("\n")
             battle = pyfiglet.figlet_format("Battleship", font="bulbhead")
             print(colored(battle, "black", "on_white"))
-            game = pyfiglet.figlet_format("    Game    ", font="bulbhead")
+            game = pyfiglet.figlet_format("***** Game *****", font="bulbhead")
             print(colored(game, "black", "on_white"))
             print("\n")
             print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
