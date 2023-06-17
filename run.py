@@ -1,5 +1,5 @@
 from random import randint
-from colorama import Fore, Back, Style
+from colorama import Back, Style
 from colorama import init
 from termcolor import colored
 import pyfiglet
@@ -27,9 +27,7 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
-            print(Back.MAGENTA + Style.BRIGHT + "Enter the board size ")
-            size = input(Back.MAGENTA + Style.BRIGHT + "(minimum 4):")
-            print(Style.RESET_ALL)
+            size = input(Back.MAGENTA + Style.NORMAL + "Enter board size >=4:")
             if size.isdigit():
                 size = int(size)
                 if size >= 4:
