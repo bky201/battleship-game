@@ -310,9 +310,7 @@ class BattleShipGame:
             print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
             print(colored(" Enter 2 to Quit      ", "black", "on_yellow"))
             print("\n")
-            choice = input(Back.MAGENTA + Style.NORMAL + "Enter (1 or 2):")
-            print(Style.RESET_ALL)
-
+            choice = input(Back.MAGENTA+"Enter (1 or 2):"+Style.RESET_ALL)
             if choice == '1':
                 self.__init__()  # Reset game state
                 self.play()
