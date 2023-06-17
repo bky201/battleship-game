@@ -28,6 +28,7 @@ class BattleShipGame:
         """
         while True:
             size = input(Back.MAGENTA + Style.NORMAL + "Enter board size >=4:")
+            print(Style.RESET_ALL)
             if size.isdigit():
                 size = int(size)
                 if size >= 4:
