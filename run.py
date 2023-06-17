@@ -317,7 +317,6 @@ class BattleShipGame:
                 self.__init__()  # Reset game state
                 self.play()
             elif choice == '2':
-                print("\n")
                 game = pyfiglet.figlet_format("Goodbye!", font="bulbhead")
                 print(game)
                 break
