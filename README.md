@@ -20,6 +20,9 @@ Battleship game is a website that allows users to play game against computer. Bo
   ![alt text](images/home.png)  
 
 
+
+### Game main page
+
 * The Game Area
   * The player will get to read the key information about the board and the symbols used in the game board with their meaning and representation.
 
@@ -68,6 +71,6 @@ Battleship game is a website that allows users to play game against computer. Bo
 
     ![alt text](images/winDrawMessage.png)
 
-    
+
 
 
