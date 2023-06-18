@@ -27,6 +27,7 @@ class BattleShipGame:
             int: The validated board size.
         """
         while True:
+            print(Back.MAGENTA+"Enter board size + Enter key:"+Style.RESET_ALL)
             size = input(Back.MAGENTA+"Enter board size >=4:"+Style.RESET_ALL)
             if size.isdigit():
                 size = int(size)
@@ -307,8 +308,8 @@ class BattleShipGame:
             game = pyfiglet.figlet_format("***** Game *****", font="bulbhead")
             print(game)
             print("\n")
-            print(colored(" Enter 1 to Play Game ", "black", "on_yellow"))
-            print(colored(" Enter 2 to Quit      ", "black", "on_yellow"))
+            print(colored("Enter 1 + Enter Key to Play", "black", "on_yellow"))
+            print(colored("Enter 2 + Enter Key to Quit", "black", "on_yellow"))
             print("\n")
             choice = input(Back.MAGENTA+"Enter (1 or 2):"+Style.RESET_ALL)
             if choice == '1':
