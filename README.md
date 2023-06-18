@@ -153,14 +153,14 @@ During the development process, the following Git commands were utilized to push
   * At the bottom of the page go to Manual Deploy, select "main" branch and select "Deploy Branch".
   * Once completed successfully, after waiting for some time the app will be deployed to heroku. 
   
-  ### Clone the repository code locally
+  ## Clone the repository code locally
 
 To create a local copy of the repository code by cloning it just do the following steos:
 
   * Navigate to the GitHub Repository that you want to clone locally, and then click on the dropdown button labeled "Code".
-  * Click on "HTTPS" and copy the link
-  * Open your IDE and install git
-  * On your cmd line write git clone "your https link"
+  * Click on "HTTPS" and copy the link.
+  * Open your IDE and install git.
+  * On your cmd line write git clone "your https link".
 
 ## Credits
 
