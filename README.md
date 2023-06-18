@@ -164,7 +164,7 @@ To create a local copy of the repository code by cloning it just do the followin
 
 ## Credits
 
-* The Battleship detailed information on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game))
+* The Battleship detailed information on [Wikipedia](https://en.wikipedia.org/wiki/Battleship_(game)).
 
 * Print Colors in Python terminal and Python | ASCII art using pyfiglet module [Geegforgeeks](https://www.geeksforgeeks.org/).
 
