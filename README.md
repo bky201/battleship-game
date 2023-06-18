@@ -1,6 +1,6 @@
 # Battleship Game
 
-Battleship game is a website that allows users to play game against computer. Both players will try to guess the location of ships.  The location of the ships is unknown and it is generated randomly on player board and computer board. If the player missed the location the player gets an alert message "You miised" and the location gets assigned "x". If the player hits the battleship the player gets an alert message "you hit one" and the location gets assigned "#". If the computer missed the location the player gets an alert message "computer miised" and the location gets assigned "O". If the computer hits the battleship the player gets an alert message "computer hits ship" and the location gets assigned "#". 
+Battleship game is a website that allows users to play game against computer. Both players will try to guess the location of ships.  The location of the ships is unknown and it is generated randomly on player board and computer board. If the player missed the location the player gets an alert message "You miised" and the location gets assigned "x". If the player hits the battleship the player gets an alert message "you hit one" and the location gets assigned "#". If the computer missed the location the player gets an alert message "computer missed" and the location gets assigned "O". If the computer hits the battleship the player gets an alert message "computer hits ship" and the location gets assigned "#". 
 [View the live site here](https://battleships-app-3b11e752263f.herokuapp.com/).
 
   ![alt text](images/responsive.png)
@@ -72,5 +72,18 @@ Battleship game is a website that allows users to play game against computer. Bo
     ![alt text](images/winDrawMessage.png)
 
 
+### Game Data Model
 
+ The class Definition is 'BattleShipGame' and it represents the Battleship game and contains various methods to handle game logic. It has attributes such as size, player_score, com_score, Hidden_Bord, Hidden_Pattern_Comp, Player_Bord, Guess_Pattern_Comp, player_guessed_locations, and computer_guessed_locations to store the game state.
 
+ The class methods handle tasks such as getting the board size, printing the game board, validating user input, generating unique ship locations, creating ships on the board, counting hits, checking game over conditions, generating computer guesses, playing the game, and displaying the home page.
+
+ The game_home_page method dsplays the home page of the game and allows the user to choose to play the game or quit. Based on the user's choice, it either starts a new game or exits the program. 
+ 
+ The play method starts the Battleship game, initializes the game board and hidden ship locations, alternates between player and computer turns to make guesses and update the game state, prints the game boards and scores after each guess, checks for game over conditions and displays the corresponding game over message. The __main__ block creates an instance of the BattleShipGame class and calls the game_home_page method to start the game.
+
+### Remaining future functionalities
+
+* Allowing player to select row size, column size, and the number of battle ship.
+* Game score storage. To store the number of wins made by the player and computer.
+* Generating random ships for every trial of the game and allowing the player to guess infinitly and at any location until the maximum score is obtained.
