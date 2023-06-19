@@ -101,7 +101,7 @@ Battleship game is a website that allows users to play game against computer. Bo
 
 Below are some of the testing features
 
-* I f the board size is not entered correctly or left blank the the following error message will pop up.
+* If the board size is not entered correctly or left blank the the following error message will pop up.
 
     ![alt text](images/invalidboardsize.png)
 
@@ -123,7 +123,7 @@ The python code was uploaded to the CI Python Linter to validate the code and wa
 
 ## Bugs and Fixes
 
-Boards with the same randomly generated battleship was obtained that was because a single list of random generated battle ship was used. A second list was used to fix the duplicate board with the same battleship not be generated.
+Boards with the same randomly generated battleship was obtained that was because a single list of random generated battle ship was used. A second list was used to fix the duplicate board with the same battleship not to be generated.
 
 Guessing the battleship location was not unique it was possible to guess a ship location again. To fix this issue a list was created to append previously guessed locations and every time a new location is entered first it cross check with the previously guessed locations for its validation.
 
@@ -153,7 +153,7 @@ During the development process, the following Git commands were utilized to push
   * At the bottom of the page go to Manual Deploy, select "main" branch and select "Deploy Branch".
   * Once completed successfully, after waiting for some time the app will be deployed to heroku. 
   
-  ## Clone the repository code locally
+## Clone the repository code locally
 
 To create a local copy of the repository code by cloning it just do the following steos:
 
