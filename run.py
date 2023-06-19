@@ -207,7 +207,7 @@ class BattleShipGame:
         """
         Starts the Battleship game.
         """
-        print(colored("\nLet's play Battleship!      ", "black", "on_white"))
+        print(colored("Let's play Battleship!      ", "black", "on_white"))
         print(colored("The '$'-hidden battleships. ", "black", "on_white"))
         print(colored("The '#' represents a hit.   ", "black", "on_white"))
         print(colored("The '0' represents a miss.  ", "black", "on_white"))
