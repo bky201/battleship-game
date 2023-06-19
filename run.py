@@ -33,7 +33,8 @@ class BattleShipGame:
                 size = int(size)
                 if size >= 4:
                     return size
-            print(colored("\nInvalid board size.", "red", 'on_white'))
+            print(colored("Invalid board size.", "red", 'on_white'))
+            print("\n")
 
     def print_board(self, board, clr, bkgrnd):
         """
